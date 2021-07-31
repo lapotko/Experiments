@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function reverse(array) {
+        var reverseArray = []; //Создадим пустой массив
+        for (var i = array.length - 1; i >= 0; i--) {
+          //напишем цикл начинающийся с последнего элемента массива, который необходимо обратить
+          reverseArray.push(array[i]); //каждый элемент (с конца массива) помещаем в пустой массив
+        }
+        return reverseArray;
+      }
+      console.log(reverse([1, 2, 3, 4, 5]));
+    </script>
+  </body>
+</html>

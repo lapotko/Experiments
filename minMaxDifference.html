@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var myArray = [17, 2, 10, 28, 4, 5];
+      var min = myArray[0]; //условно обозначим, как минимальное число, первый элемент массива
+      var max = myArray[myArray.length - 1]; //условно обозначим, как максимальное число, последний элемент массива
+      for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i] < min) {
+          min = myArray[i];
+        } else if (myArray[i] > max) {
+          max = myArray[i];
+        }
+      }
+      console.log(
+        "минимальное число в массиве: " +
+          min +
+          ", максимальное число в массиве: " +
+          max +
+          ". Разность чисел = " +
+          (max - min)
+      );
+    </script>
+  </body>
+</html>
