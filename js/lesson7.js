@@ -128,11 +128,11 @@ function move() {
     // 1) new_unit не часть змейки
     // 2) Змейка не ушла за границу поля
     //console.log(new_unit);
-    if (!isSnakeUnit(new_unit) && !isBlock(new_unit) && new_unit != undefined) {
+    if (!isSnakeUnit(new_unit) && new_unit != undefined && !isBlock(new_unit)) {
         // Добавление новой части змейки
         new_unit.setAttribute('class', new_unit.getAttribute('class') + ' snake-unit');
         snake.push(new_unit);
-
+        
         // Проверяем, надо ли убрать хвост
         if (!haveFood(new_unit)) {
             // Находим хвост
@@ -187,6 +187,7 @@ function haveFood(unit) {
   */
 function isBlock(unit){
     var check = false;
+    
     var unit_classes = unit.getAttribute('class').split(' ');
     if(unit_classes.includes('block-unit')){
         return true;
