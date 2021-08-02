@@ -69,8 +69,9 @@ function startGame() {
     respawn();//создали змейку
 
     snake_timer = setInterval(move, SNAKE_SPEED);//каждые 200мс запускаем функцию move
-    setTimeout(createFood, 5000);
-    setTimeout(createBlock, 3000);
+    setTimeout(createFood, 2000);
+    food_timer = setInterval(createFood, 5000);
+    setTimeout(createBlock, 5000);
     blockTimer = setInterval(createBlock, 5000);
 }
 
@@ -112,23 +113,36 @@ function move() {
 
     // Определяем новую точку
     if (direction == 'x-') {
+        if(coord_x == 0){
+            coord_x = 20;
+        }
         new_unit = document.getElementsByClassName('cell-' + (coord_y) + '-' + (coord_x - 1))[0];
     }
     else if (direction == 'x+') {
+        if(coord_x == 19){
+            coord_x = -1;
+        }
         new_unit = document.getElementsByClassName('cell-' + (coord_y) + '-' + (coord_x + 1))[0];
     }
     else if (direction == 'y+') {
+        if(coord_y == 0){
+            coord_y = 20;
+        }
         new_unit = document.getElementsByClassName('cell-' + (coord_y - 1) + '-' + (coord_x))[0];
+        
     }
     else if (direction == 'y-') {
+        if(coord_y == 19){
+            coord_y = -1;
+        }
         new_unit = document.getElementsByClassName('cell-' + (coord_y + 1) + '-' + (coord_x))[0];
     }
 
     // Проверки
     // 1) new_unit не часть змейки
-    // 2) Змейка не ушла за границу поля
+    // 2) Змейка не столкнулась с препятствием
     //console.log(new_unit);
-    if (!isSnakeUnit(new_unit) && new_unit != undefined && !isBlock(new_unit)) {
+    if (!isSnakeUnit(new_unit) && !isBlock(new_unit)) {
         // Добавление новой части змейки
         new_unit.setAttribute('class', new_unit.getAttribute('class') + ' snake-unit');
         snake.push(new_unit);
@@ -175,7 +189,7 @@ function haveFood(unit) {
     // Если еда
     if (unit_classes.includes('food-unit')) {
         check = true;
-        createFood();
+        // createFood();
         score++;
        
         scoreText.innerText = `Счёт: ${score}`;
