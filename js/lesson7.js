@@ -140,9 +140,9 @@ function move() {
 
     // Проверки
     // 1) new_unit не часть змейки
-    // 2) Змейка не ушла за границу поля
+    // 2) Змейка не столкнулась с препятствием
     //console.log(new_unit);
-    if (!isSnakeUnit(new_unit)/*  && new_unit != undefined */ && !isBlock(new_unit)) {
+    if (!isSnakeUnit(new_unit) && !isBlock(new_unit)) {
         // Добавление новой части змейки
         new_unit.setAttribute('class', new_unit.getAttribute('class') + ' snake-unit');
         snake.push(new_unit);
